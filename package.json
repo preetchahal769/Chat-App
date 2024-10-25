@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "server": "nodemon backend/index.js"
+    "server": "node backend/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +17,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.7.2",
     "nodemon": "^3.1.7",
+    "react-hot-toast": "^2.4.1",
+    "react-router-dom": "^6.27.0",
     "socket.io": "^4.8.0"
   }
 }

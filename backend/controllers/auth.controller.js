@@ -8,14 +8,14 @@ export const signup = async (req, res) => {
       req.body;
 
     if (password !== confirmPassword) {
-      return res.status(400).json({ error: "Passwords don't match" });
+      return res.status(401).json({ error: "Passwords don't match" });
     }
 
     const email = await User.findOne({ emailId });
 
     if (email) {
       return res
-        .status(400)
+        .status(401)
         .json({ error: "User with this email already exists" });
     }
 
@@ -23,7 +23,7 @@ export const signup = async (req, res) => {
 
     if (phone) {
       return res
-        .status(400)
+        .status(401)
         .json({ error: "User with this phoneNumber already exists" });
     }
 
@@ -49,7 +49,7 @@ export const signup = async (req, res) => {
         role: newUser.role,
       });
     } else {
-      res.status(400).json({ error: "Invalid user data" });
+      res.status(401).json({ error: "Invalid user data" });
     }
   } catch (error) {
     console.error(`error ${error}`);
@@ -57,16 +57,21 @@ export const signup = async (req, res) => {
   }
 };
 export const signin = async (req, res) => {
+  console.log(`hit on this api
+  `);
   try {
     const { emailId, password } = req.body;
-    const email = await User.findOne({ emailId });
 
+    console.log(`emailId :${emailId}`);
+    const email = await User.findOne({ emailId });
+    console.log(`email :${email}`);
     if (!email) {
-      return res.status(404).json({ error: "User not found" });
+      return res.status(401).json({ error: "User not found" });
     }
     const isMatch = await bcrypt.compare(password, email.password);
+    console.log(`isMatch :${isMatch}`);
     if (!isMatch) {
-      return res.status(400).json({ error: "Invalid credentials" });
+      return res.status(401).json({ error: "Invalid credentials" });
     }
     generateTokenAndSetCookie(email._id, res);
 
