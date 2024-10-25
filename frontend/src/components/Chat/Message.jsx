@@ -1,16 +1,18 @@
-import React from "react";
+import { useAuth } from "../../context/AuthContext";
+import useUserConversation from "../../store/userConversation";
 
-const Message = () => {
+const Message = (message) => {
+  const { authUser } = useAuth();
+
+  const fromMe = message.message.senderId === authUser._id;
+
+  console.log(authUser._id, message);
   return (
     <div>
-      <div className="chat chat-start">
-        <div className="chat-bubble">
-          It's over Anakin,
-          <br />I have the high ground.
+      <div className={`chat ${fromMe ? "chat-end" : "chat-start"}`}>
+        <div className="chat-bubble break-words  max-w-[15rem]">
+          {message.message.message}
         </div>
-      </div>
-      <div className="chat chat-end">
-        <div className="chat-bubble">You underestimate my power!</div>
       </div>
     </div>
   );

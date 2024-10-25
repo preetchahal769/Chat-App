@@ -7,12 +7,12 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes.js";
 import messageRoutes from "./routes/message.routes.js";
 import userRoutes from "./routes/user.routes.js";
-
+import { app, server } from "./socket/socket.js";
 import connectToDB from "./db/connectToMongoDB.js";
 
 dotenv.config();
 
-const app = express();
+// const app = express();
 const PORT = process.env.PORT || 4000;
 
 app.use(express.json());
@@ -21,7 +21,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectToDB();
   console.log(`App is running on http://localhost:${PORT}`);
 });

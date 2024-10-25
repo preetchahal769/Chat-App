@@ -1,11 +1,12 @@
 import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
 export const sendMessage = async (req, res) => {
+  console.log("hit on this api");
   try {
     const { message } = req.body;
     const { id: reciverId } = req.params;
     const senderId = req.user._id;
-
+    console.log(`message : ${req}`);
     let conversation = await Conversation.findOne({
       participants: { $all: [senderId, reciverId] },
     });

@@ -6,7 +6,7 @@ const Conversation = ({ conversation }) => {
     useUserConversation();
 
   const isSelected = selectedConversation?._id === conversation._id;
-  console.log("conversation", conversation);
+  // console.log("conversation", conversation);
   return (
     <>
       <div

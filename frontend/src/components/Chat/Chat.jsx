@@ -3,7 +3,6 @@ import Messages from "./Messages";
 import MessageInput from "./MessageInput";
 
 import useUserConversation from "../../store/userConversation";
-import { set } from "mongoose";
 
 const Chat = () => {
   const { selectedConversation, setSelectedConversation } =
