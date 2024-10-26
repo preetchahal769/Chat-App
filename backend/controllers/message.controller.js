@@ -1,12 +1,13 @@
 import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
+import { getReciverSocket, io } from "../socket/socket.js";
+
 export const sendMessage = async (req, res) => {
-  console.log("hit on this api");
   try {
     const { message } = req.body;
     const { id: reciverId } = req.params;
     const senderId = req.user._id;
-    console.log(`message : ${req}`);
+
     let conversation = await Conversation.findOne({
       participants: { $all: [senderId, reciverId] },
     });
@@ -27,9 +28,13 @@ export const sendMessage = async (req, res) => {
       conversation.messages.push(newMessage._id);
     }
 
-    await conversation.save();
+    await Promise.all([conversation.save(), newMessage.save()]);
 
-    await newMessage.save();
+    const reciverSocketId = getReciverSocket(reciverId);
+    if (reciverSocketId) {
+      io.to(reciverSocketId).emit("newMessage", newMessage);
+    }
+
     res.status(201).json(newMessage);
   } catch (error) {
     console.error(`error in send message : ${error}`);
