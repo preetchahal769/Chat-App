@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useSendMessage from "../../hooks/useSendMessage";
-
+import "./MessageInput.css";
 const MessageInput = () => {
   const [message, setMessage] = useState("");
   const { loading, sendMessage } = useSendMessage();
@@ -12,10 +12,10 @@ const MessageInput = () => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <label className="input input-bordered flex items-center gap-2">
+      <label className=" MessageInput-label input input-bordered  flex items-center gap-2">
         <input
           type="text"
-          className="grow"
+          className="grow MessageInput-Box focus:outline-none"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />

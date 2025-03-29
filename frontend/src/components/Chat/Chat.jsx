@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Messages from "./Messages";
 import MessageInput from "./MessageInput";
-
+import "./Chat.css";
 import useUserConversation from "../../store/userConversation";
 
 const Chat = () => {
@@ -16,8 +16,8 @@ const Chat = () => {
       {!selectedConversation ? (
         <NoChats />
       ) : (
-        <>
-          <div className="bg-slate-500 px-4 py-2 mb-2">
+        <div className="Chat">
+          <div className=" bg-slate-500 px-4 py-2 mb-2">
             <span className="label-text">To:</span>
             <span className="text-gray-900 font-bold">
               {selectedConversation.userName}
@@ -25,7 +25,7 @@ const Chat = () => {
           </div>
           <Messages />
           <MessageInput />
-        </>
+        </div>
       )}
     </div>
   );

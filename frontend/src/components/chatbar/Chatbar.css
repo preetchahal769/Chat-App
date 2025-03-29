@@ -1,0 +1,7 @@
+.Chatbar-title {
+  font-size: 1.5rem;
+  margin: 1rem;
+  cursor: pointer;
+  color: rgb(4, 142, 240);
+  font-weight: bold;
+}
