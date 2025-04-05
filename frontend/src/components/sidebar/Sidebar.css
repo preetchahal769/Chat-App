@@ -2,10 +2,15 @@
   color: #fff;
   height: 100vh;
   display: flex;
+  padding: 0.5 rem;
   flex-direction: column;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   align-items: center;
   border: 1px solid grey;
+}
+
+.SIdebar-top {
+  height: 100vh;
 }
 
 .Sidebar-logo {

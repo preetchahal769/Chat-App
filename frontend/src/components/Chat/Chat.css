@@ -6,3 +6,12 @@
   border-left: 1px solid gray;
   padding: 1rem;
 }
+
+.Chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-bottom: 1px solid gray;
+  background: oklch(0.554 0.046 257.417);
+}

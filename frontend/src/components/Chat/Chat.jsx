@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Messages from "./Messages";
 import MessageInput from "./MessageInput";
+// import useUserConversation from "../../store/userConversation";
 import "./Chat.css";
 import useUserConversation from "../../store/userConversation";
 
@@ -17,10 +18,29 @@ const Chat = () => {
         <NoChats />
       ) : (
         <div className="Chat">
-          <div className=" bg-slate-500 px-4 py-2 mb-2">
-            <span className="label-text">To:</span>
-            <span className="text-gray-900 font-bold">
-              {selectedConversation.userName}
+          <div className=" Chat-header     ">
+            <div>
+              <span className="label-text">To:</span>
+              <span className="text-gray-900 font-bold">
+                {selectedConversation.userName}
+              </span>
+            </div>
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6"
+                onClick={() => setSelectedConversation(null)}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
             </span>
           </div>
           <Messages />
